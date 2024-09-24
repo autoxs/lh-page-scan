@@ -1,0 +1,20 @@
+{
+  "name": "lh-test-javascript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node e2e/lighthouse-selenium-test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chrome-launcher": "^1.1.2",
+    "chromedriver": "^129.0.0",
+    "lighthouse": "^12.2.1",
+    "puppeteer": "^23.4.0",
+    "selenium-webdriver": "^4.25.0"
+  }
+}

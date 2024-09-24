@@ -1,0 +1,6 @@
+{
+    "urlsToTest":[
+        "https://example.com",
+        "https://www.google.com"
+    ]
+}
