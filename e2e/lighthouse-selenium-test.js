@@ -27,17 +27,21 @@ async function runLighthouse(url, chromePort) {
 
 
 async function runTest(urls) {
-    const chromeOptions = new chrome.Options();
-    chromeOptions.addArguments('--headless');
+    let options = new chrome.Options();
+    options.addArguments('--no-sandbox');
+    options.addArguments('--disable-dev-shm-usage');
+    options.addArguments('--headless'); // Optional: run Chrome in headless mode
+    options.addArguments('--disable-gpu'); // Optional: required for headless mode in some environments
+
 
     const driver = await new Builder()
         .forBrowser('chrome')
-        .setChromeOptions(chromeOptions)
+        .setChromeOptions(options)
         .build();
 
-    const chromeLauncher = await import('chrome-launcher');
-    const chromeInstance = await chromeLauncher.launch({ chromeFlags: ['--incognito'] });
-    const chromePort = chromeInstance.port;
+    // const chromeLauncher = await import('chrome-launcher');
+    // const chromeInstance = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
+    // const chromePort = chromeInstance.port;
 
     try {
         for (const url of urls) {
@@ -52,7 +56,6 @@ async function runTest(urls) {
         }
     } finally {
         await driver.quit();
-        await chromeInstance.kill();
     }
 }
 
